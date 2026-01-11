@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Tickets - SimpleTask{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="ticket-form">
+        <h2>Create New Ticket</h2>
+        <form id="createTicketForm">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="3"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select id="status" name="status">
+                    <option value="todo">To Do</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="done">Done</option>
+                </select>
+            </div>
+            
+            <button type="submit">Create Ticket</button>
+        </form>
+    </section>
+    
+    <section class="tickets-list">
+        <h2>Tickets</h2>
+        <div id="ticketsList"></div>
+    </section>
+</div>
+
+<!-- Edit Modal -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edit Ticket</h2>
+        <form id="editTicketForm">
+            <input type="hidden" id="editTicketId">
+            
+            <div class="form-group">
+                <label for="editTitle">Title:</label>
+                <input type="text" id="editTitle" name="title" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="editDescription">Description:</label>
+                <textarea id="editDescription" name="description" rows="3"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="editStatus">Status:</label>
+                <select id="editStatus" name="status">
+                    <option value="todo">To Do</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="done">Done</option>
+                </select>
+            </div>
+            
+            <button type="submit">Update Ticket</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% endblock %}
+

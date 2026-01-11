@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from datetime import datetime
 from models.ticket import Ticket
 from config import Config
@@ -29,8 +29,11 @@ tickets: dict[int, Ticket] = {}
 next_id = 1
 
 @app.route('/')
-def hello():
-    return 'Hello, World!'
+def index():
+    if theme:
+        return render_template('index.html')
+    else:
+        return 'SimpleTask API - No frontend configured'
 
 # Create ticket
 @app.route('/tickets', methods=['POST'])
